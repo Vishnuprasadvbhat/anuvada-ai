@@ -1,15 +1,17 @@
-import { Text, View} from "react-native";
+import {  View} from "react-native";
+import AnimatedIntro from "@/components/AnimatedIntro";
+import LoginSheet from "@/components/LoginSheet";
 
 export default function Index() {
   return (
-    <View
+    <View 
       style={{
         flex: 1,
         justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text>No BS guys Please</Text>
+        }}>    
+      <AnimatedIntro/>
+      <LoginSheet/>
+
     </View>
   );
 }
