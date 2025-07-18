@@ -8,22 +8,22 @@ import { memo, useEffect } from 'react';
 
 const content = [
   {
-    title: "Let's Speak.",
+    title: "Speak with Clarity",
     bg: Colors.lime,
     fontColor: Colors.pink,
   },
   {
-    title: "Let's Listen.",
+    title: "Listen with Intention",
     bg: Colors.brown,
     fontColor: Colors.sky,
   },
   {
-    title: "Let's Translate.",
+    title: "Translate\nwith Intelligence",
     bg: Colors.orange,
     fontColor: Colors.blue,
   },
   {
-    title: "With AnuvĀda AI...",
+    title: "AnuvĀda AI:",
     bg: Colors.green,
     fontColor: Colors.pink,
   },
@@ -213,7 +213,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     position: 'absolute',
     left: '0%',
-    height: 65,
+    height: 100,
   },
   ball: {
     width: 5,
