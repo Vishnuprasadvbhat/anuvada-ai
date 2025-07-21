@@ -29,19 +29,25 @@ const LoginSheet = () => {
          <Ionicons name= 'logo-apple' size={24}  style={styles.btnIcon}/>
         <Text style = {[styles.btnLightText]}>Continue with Apple </Text>
      </TouchableOpacity>
-    
-    <TouchableOpacity style = {[defaultStyles.btn, styles.btnLight]} >
-         <Ionicons name= 'logo-linkedin' size={20}  style={styles.btnIcon}/>
-        <Text style = {[styles.btnLightText]}>Continue with LinkedIn </Text>
-     </TouchableOpacity>
 
-      <Link href={"/login"} asChild style={[defaultStyles.btn, styles.btnDarkText]}>
-        
+      <Link href={{
+        pathname: '/login',
+        params : {type: 'register'}
+      }} asChild style={[defaultStyles.btn, styles.btnDarkText]}>
         <TouchableOpacity style={[defaultStyles.btn, styles.btnOutline]} >
          <Ionicons name= 'mail' size={20}  style={[styles.btnIcon]} color={'#fff'}/>
             <Text style = {styles.btnDarkText}>Sign up with email</Text>
         </TouchableOpacity>
+      </Link>
 
+      <Link href={{
+        pathname: '/login',
+        params : {type: 'login'}
+      }}  asChild style={[defaultStyles.btn, styles.btnDarkText]}>
+        <TouchableOpacity style={[defaultStyles.btn, styles.btnOutline]} >
+         <Ionicons name= 'person' size={20}  style={[styles.btnIcon]} color={'#fff'}/>
+            <Text style = {styles.btnDarkText}>Login</Text>
+        </TouchableOpacity>
       </Link>
 
     </View>
@@ -74,7 +80,7 @@ const styles = StyleSheet.create({
     paddingRight: 7,
     fontSize: 20,
     fontFamily: 'Quicksand_300Light',
-   
+    fontWeight : 'semibold'
     
   },
 

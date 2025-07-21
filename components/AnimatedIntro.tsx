@@ -18,12 +18,12 @@ const content = [
     fontColor: Colors.sky,
   },
   {
-    title: "Translate\nwith Intelligence",
-    bg: Colors.orange,
+    title: "Translate with Intelligence",
+    bg: Colors.orange,  
     fontColor: Colors.blue,
   },
   {
-    title: "AnuvĀda AI:",
+    title: "Powered by Anuvāda",
     bg: Colors.green,
     fontColor: Colors.pink,
   },
@@ -33,8 +33,8 @@ const AnimatedIntro = () =>  {
 
 
     const {width} = useWindowDimensions();
-    const ballwidth= 34;
-    const half = width / 2 - ballwidth / 2;
+    const cursorwidth= 34;
+    const half = width / 2 - cursorwidth / 2;
 
     const currentX = useSharedValue(half);
     const currentIndex = useSharedValue(0);
@@ -73,7 +73,7 @@ const AnimatedIntro = () =>  {
 
   const blinkOpacity = useSharedValue(1);
   
-    const ballStyle = useAnimatedStyle(() => {
+    const cursorStyle = useAnimatedStyle(() => {
       return {
         backgroundColor: interpolateColor(
           currentX.value,
@@ -187,7 +187,7 @@ useEffect(() => {
   return (
     <Animated.View style={[styles.wrapper, style1]} >
       <Animated.View style={[styles.content]} >
-        <Animated.View style={[styles.ball, ballStyle]} pointerEvents="none"  />
+        <Animated.View style={[styles.cursor, cursorStyle]} pointerEvents="none"  />
         <Animated.View style={[styles.mask, mask]}  />
 
         <Animated.View  >
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     left: '0%',
     height: 100,
   },
-  ball: {
+  cursor: {
     width: 5,
     zIndex: 10,
     height: 53,
