@@ -40,7 +40,7 @@ Welcome to the **AI Translation App**, a mobile-first application built using th
 
 ```mermaid
 graph TD
-  A[User (Mobile App)] --> B1[Text Input]
+  A[User(Mobile App)] --> B1[Text Input]
   A --> B2[Voice Input]
   A --> B3[Chat UI Interaction]
 
@@ -70,7 +70,7 @@ graph TD
   D1 --> E2
   D2 --> E3
   D3 --> E2
-  
+
 ```
 
 ## 🙌 Credits
