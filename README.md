@@ -1,50 +1,77 @@
-# Welcome to your Expo app 👋
+# 🌍 AI Translation App (Expo + Supabase + Google Gemini APIs)
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the **AI Translation App**, a mobile-first application built using the **Expo Framework** and powered by **Supabase** on the backend. This app is designed to bridge language barriers through real-time **text-based**, **voice-based**, and **conversational AI translation** powered by **Google Gemini APIs**, including **Speech-to-Text (STT)**, **Text-to-Speech (TTS)**, and **Flash 2.0 Translation**.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Features
 
-   ```bash
-   npm install
-   ```
+### ✅ Text-Based Translation
+- Translate written input between multiple languages
+- Fast and context-aware translation using Gemini Flash 2.0
 
-2. Start the app
+### 🎙 Voice-Based Translation
+- Speak in your native language
+- Real-time transcription using Gemini STT
+- Instant translation with Flash 2.0
+- Listen to the translated audio with Gemini TTS
 
-   ```bash
-   npx expo start
-   ```
+### 🤖 Conversational AI Interaction
+- Set goals and contexts (e.g., travel, interview, shopping)
+- Speak or type in natural language
+- AI responds with real-time translated speech
+- Chat history stored and searchable
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🛠️ Tech Stack
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+| Layer        | Technology                     |
+|--------------|--------------------------------|
+| **Frontend** | [React Native](https://reactnative.dev/) via [Expo](https://expo.dev) |
+| **Backend**  | [Supabase](https://supabase.io) - Auth, Database, Storage |
+| **AI APIs**  | [Google Gemini STT, TTS, Flash 2.0 (Vertex AI)](https://cloud.google.com/vertex-ai/docs/generative-ai) |
+| **Storage**  | Supabase Storage for voice logs and TTS audio |
+| **Languages**| JavaScript / TypeScript        |
 
-## Get a fresh project
+---
 
-When you're ready, run:
+## 📊 Architecture Overview (Mermaid)
 
-```bash
-npm run reset-project
+```mermaid
+graph TD
+  A[User (Mobile App)] --> B1[Text Input]
+  A --> B2[Voice Input]
+  A --> B3[Chat UI Interaction]
+
+  %% Text Translation Flow
+  B1 --> C1[Google Flash 2.0<br/>(Text Translation)]
+  C1 --> D1[Translated Output (Text)]
+
+  %% Voice Translation Flow
+  B2 --> C2[Gemini Speech-to-Text<br/>(STT)]
+  C2 --> C3[Google Flash 2.0]
+  C3 --> C4[Gemini Text-to-Speech<br/>(TTS)]
+  C4 --> D2[Translated Output (Audio)]
+
+  %% Conversational AI Chat Flow
+  B3 --> C5[Google Flash 2.0<br/>(With Context)]
+  C5 --> C6[Gemini Text-to-Speech]
+  C6 --> D3[Spoken AI Response]
+
+  %% Backend Infrastructure
+  A --> E[Supabase Backend]
+  E --> E1[Authentication]
+  E --> E2[Database<br/>(Profiles, History, Sessions)]
+  E --> E3[Storage<br/>(Voice Logs, Audio Files)]
+  E --> E4[Edge Functions / Node API Gateway]
+
+  %% Link backend with flows
+  D1 --> E2
+  D2 --> E3
+  D3 --> E2
+  
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 🙌 Credits
+### Built with 💙 by Vishadh Labs 
