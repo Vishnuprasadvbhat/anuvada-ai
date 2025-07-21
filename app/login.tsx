@@ -8,11 +8,13 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import Colors from "@/constants/Colors";
 import React, { useState } from "react";
 import { useLocalSearchParams } from "expo-router";
 import { defaultStyles } from "@/constants/Styles";
+import { useSignIn, useSignUp } from "@clerk/clerk-expo";
 
 
 const LoginPage = () => {
@@ -22,14 +24,43 @@ const LoginPage = () => {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
 
+  const { signIn, isLoaded, setActive } = useSignIn();
+  const {signUp, isLoaded: signUpLoaded, setActive : signUpSetActive} = useSignUp();
+   
   const onSignUp = async () => {
-
+    if (!signUpLoaded) return;
+    setLoading(true);
+    try {
+      const result = await signUp.create({emailAddress, password});
+      signUpSetActive({ session: result.createdSessionId });
+    } 
+    catch (error :  any){
+      alert(error.errors[0].message);
+    }
+    finally {
+      setLoading(false);
+    }
   };
+
 
   const onLogin = async () => {
 
+    console.log("Page-Type", type);
+
+    if (!isLoaded) return;
+    setLoading(true);
+
+    try {
+      const result = await signIn.create({ identifier: emailAddress, password});
+      setActive({ session: result.createdSessionId });
+    } 
+    catch (error : any){
+      Alert.alert(error.errors[0].message);
+    }
+    finally {
+      setLoading(false);
+    }
   };
-  console.log("Page-Type", type);
 
   return (
     <KeyboardAvoidingView
@@ -58,6 +89,7 @@ const LoginPage = () => {
           style={styles.inputfield}
           value={emailAddress}
           onChangeText={setEmailAddress}
+          
         ></TextInput>
 
         <TextInput
@@ -67,6 +99,7 @@ const LoginPage = () => {
           value={password}
           onChangeText={setPassword}
           secureTextEntry
+    
         ></TextInput>
       </View>
 
