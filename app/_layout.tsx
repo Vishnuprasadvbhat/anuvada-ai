@@ -1,42 +1,37 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Slot, SplashScreen, Stack, useRouter, useSegments} from "expo-router";
 import { TouchableOpacity } from "react-native";
-import { ClerkProvider, useAuth } from "@clerk/clerk-expo";
-import * as SecureStore from "expo-secure-store";
 import { useFonts } from "@expo-google-fonts/raleway";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Text } from "react-native";
-
-const publishKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
-
-const tokenCache = {
-  async getToken(key: string) {
-    try {
-      return SecureStore.getItemAsync(key);
-    } catch (err) {
-      return null;
-    }
-  },
-  async saveToken(key: string, value: string) {
-    try {
-      return SecureStore.setItemAsync(key, value);
-    } catch (err) {
-      return;
-    }
-  },
-};
+import { AuthProvider, useAuth }from "@/context/AuthContext";
+import { Session } from "@supabase/supabase-js";
+import { supabase } from "@/utils/supabase";
 
 SplashScreen.preventAutoHideAsync();
 
 const InitialLayout = () => {
-  const router = useRouter();
-  const { isLoaded, isSignedIn } = useAuth();
+
+  const [session, setSession] =useState<Session |null>(null);
+
+  const { isLoaded, isSignedIn } =  useAuth();
   const [loaded, error] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
   });
 
+  const router = useRouter();
   const segments = useSegments();
+  const inAuthGroup = segments[0] === 'login' || segments[0] === 'auth';
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
 
   useEffect(() => {
     if (error) throw error;
@@ -48,25 +43,19 @@ const InitialLayout = () => {
     }
   }, [loaded]);
 
+  const segment = segments[0] ==='auth';
+
   useEffect(() => {
-    if (!loaded) return;
+    if (!loaded || !isLoaded) return;
 
-    const isAuthGrp = segments[0] === "auth";
-
-    if (isSignedIn && !isAuthGrp) {
-      // If user is signed in and not in auth group, redirect to home
-      router.replace("/auth");
-    } else if (!isSignedIn && isAuthGrp) {
-      // If user is not signed in and in auth group, stay on auth
-      router.replace("/");
+    if (!isSignedIn && !inAuthGroup) {
+      router.replace('/login');
+    } else if (isSignedIn && inAuthGroup) {
+      router.replace('/');
     }
+  }, [isLoaded, isSignedIn, loaded]);
 
-    console.log("useEffect -> Segments", segments[0]);
-  }, [isSignedIn]);
-
-  if (!loaded || !isLoaded) {
-    return <Slot />;
-  }
+  if (!loaded || !isLoaded) return null;  
 
   return (
     <Stack>
@@ -91,12 +80,13 @@ const InitialLayout = () => {
 };
 
 const RootLayoutNav = () => {
+
   return (
-    <ClerkProvider publishableKey={publishKey} tokenCache={tokenCache}>
+    <AuthProvider> 
       <GestureHandlerRootView style={{ flex: 1 }}>
         <InitialLayout />
       </GestureHandlerRootView>
-    </ClerkProvider>
+    </AuthProvider>
   );
 };
 

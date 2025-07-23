@@ -12,10 +12,9 @@ import {
 } from "react-native";
 import Colors from "@/constants/Colors";
 import React, { useState } from "react";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter} from "expo-router";
 import { defaultStyles } from "@/constants/Styles";
-import { useSignIn, useSignUp } from "@clerk/clerk-expo";
-
+import { supabase } from "@/utils/supabase"
 
 const LoginPage = () => {
 
@@ -23,44 +22,46 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
-
-  const { signIn, isLoaded, setActive } = useSignIn();
-  const {signUp, isLoaded: signUpLoaded, setActive : signUpSetActive} = useSignUp();
    
-  const onSignUp = async () => {
-    if (!signUpLoaded) return;
-    setLoading(true);
-    try {
-      const result = await signUp.create({emailAddress, password});
-      signUpSetActive({ session: result.createdSessionId });
-    } 
-    catch (error :  any){
-      alert(error.errors[0].message);
-    }
-    finally {
-      setLoading(false);
-    }
-  };
+
+  const router = useRouter(); 
+
+  async function signUpWithEmail() {
+  setLoading(true);
+  const { data, error } = await supabase.auth.signUp({
+    email: emailAddress,
+    password: password,
+  });
+
+  if (error) {
+    Alert.alert("Signup failed", error.message);
+    console.error(error);
+  } else {
+    console.log("Signup success:", data);
+    Alert.alert('Check your email for confirmation!');
+    router.replace('/');
+  }
+  setLoading(false);
+}
 
 
-  const onLogin = async () => {
+  async function signInWithEmail() {
+  setLoading(true);
+  const { data, error } = await supabase.auth.signInWithPassword({
+    email: emailAddress,
+    password: password,
+  });
 
-    console.log("Page-Type", type);
-
-    if (!isLoaded) return;
-    setLoading(true);
-
-    try {
-      const result = await signIn.create({ identifier: emailAddress, password});
-      setActive({ session: result.createdSessionId });
-    } 
-    catch (error : any){
-      Alert.alert(error.errors[0].message);
-    }
-    finally {
-      setLoading(false);
-    }
-  };
+  if (error) {
+    Alert.alert("Login failed", error.message);
+    console.error(error);
+  } else {
+    console.log("Login success:", data);
+    router.replace('/');
+  }
+  setLoading(false);
+}
+   
 
   return (
     <KeyboardAvoidingView
@@ -71,7 +72,7 @@ const LoginPage = () => {
       {loading && (
         <View style={[defaultStyles.loadingOverlay]}>
           <ActivityIndicator size="large" color="#fff">
-            {" "}
+            <Text style={{ color: Colors.primary }}></Text>
           </ActivityIndicator>
         </View>
       )}
@@ -104,15 +105,14 @@ const LoginPage = () => {
       </View>
 
       {type === 'login' ? (
-        <TouchableOpacity onPress={onLogin} style={[defaultStyles.btn, styles.primaryBtn]}>
+        <TouchableOpacity onPress={() => signInWithEmail()} style={[defaultStyles.btn, styles.primaryBtn]}>
         <Text style={styles.primayBtnText}> Login</Text>
         </TouchableOpacity>
       ): (
-        <TouchableOpacity onPress={onSignUp} style={[defaultStyles.btn, styles.primaryBtn]}>
+        <TouchableOpacity onPress={ () => signUpWithEmail() } style={[defaultStyles.btn, styles.primaryBtn]}>
         <Text style={styles.primayBtnText}> Create account</Text>
         </TouchableOpacity>
       )}
-
     </KeyboardAvoidingView>
   );
 };
