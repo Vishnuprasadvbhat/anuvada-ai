@@ -8,17 +8,17 @@ import { Raleway_200ExtraLight } from "@expo-google-fonts/raleway";
 import { Quicksand_300Light } from "@expo-google-fonts/quicksand";
 import Colors from '@/constants/Colors';
 import { Link } from 'expo-router';
-
+import SafeView from '@/utils/safeview';
 
 
 
 const LoginSheet = () => {
 
-  const {bottom} = useSafeAreaInsets();
+  // const {bottom} = useSafeAreaInsets();
 
 
   return (
-    <View style = {[styles.container, {paddingBottom : bottom}]}>
+    <SafeView style = {[styles.container]}>
 
       <TouchableOpacity style = {[defaultStyles.btn, styles.btnLight]} >
         <Ionicons name= 'logo-google' size={20}  style={styles.btnIcon}/>
@@ -50,7 +50,7 @@ const LoginSheet = () => {
         </TouchableOpacity>
       </Link>
 
-    </View>
+    </SafeView>
   )
 }
 
