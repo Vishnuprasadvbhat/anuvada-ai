@@ -1,54 +1,63 @@
 // context/AuthContext.tsx
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { supabase } from '@/utils/supabase';
-import { Session, User } from '@supabase/supabase-js';
+import { createContext, useContext, useEffect, useState } from "react";
+import { supabase } from "@/utils/supabase";
+import { Session, User } from "@supabase/supabase-js";
 
 type AuthContextType = {
   session: Session | null;
   user: User | null;
-  isLoaded: boolean;
   isSignedIn: boolean;
+  isLoaded: boolean;
 };
 
 const AuthContext = createContext<AuthContextType>({
   session: null,
   user: null,
-  isLoaded: false,
   isSignedIn: false,
+  isLoaded: false,
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [session, setSession] = useState<Session | null>(null);
-  const [user, setUser] = useState<User | null>(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    const loadSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      setSession(data.session);
-      setUser(data.session?.user ?? null);
+    const init = async () => {
+      const { data, error } = await supabase.auth.getSession();
+      
+      setSession(data?.session ?? null);
       setIsLoaded(true);
-    };
+    {
+      if (data?.session) {
+        setSession(data.session);
+      } else {
+        setSession(null);
+    }
+      if (error) {
+        console.error("Error fetching session:", error);
+      }
+    }};
 
-    loadSession();
+    init();
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
-      setUser(session?.user ?? null);
     });
 
     return () => subscription.unsubscribe();
   }, []);
+
+  const user = session?.user ?? null;
 
   return (
     <AuthContext.Provider
       value={{
         session,
         user,
-        isLoaded,
         isSignedIn: !!session,
+        isLoaded,
       }}
     >
       {children}
