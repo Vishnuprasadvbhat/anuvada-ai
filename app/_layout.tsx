@@ -1,70 +1,59 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Slot, SplashScreen, Stack, useRouter, useSegments} from "expo-router";
-import { TouchableOpacity } from "react-native";
-import { useFonts } from "@expo-google-fonts/raleway";
-import { useEffect, useState } from "react";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Text } from "react-native";
-import { AuthProvider, useAuth }from "@/context/AuthContext";
-import { Session } from "@supabase/supabase-js";
-import { supabase } from "@/utils/supabase";
+import { SplashScreen, Stack, useRouter} from "expo-router";
+import { TouchableOpacity, Text } from "react-native";
+import React from "react";
 
-SplashScreen.preventAutoHideAsync();
+// import { useFonts } from "@expo-google-fonts/raleway";
+// import { useEffect } from "react";
+// import { GestureHandlerRootView } from "react-native-gesture-handler";
+// import { useAuth } from "@/context/AuthContext";
 
-const InitialLayout = () => {
+// import { SafeAreaProvider } from "react-native-safe-area-context";
 
-  const [session, setSession] =useState<Session |null>(null);
 
-  const { isLoaded, isSignedIn } =  useAuth();
-  const [loaded, error] = useFonts({
-    SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-  });
+// const InitialLayout = () => {
 
-  const router = useRouter();
-  const segments = useSegments();
-  const inAuthGroup = segments[0] === 'login' || segments[0] === 'auth';
+//   const { isLoaded, isSignedIn } = useAuth();
+//   const [loaded, error] = useFonts({
+//     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+//   });
 
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-    })
-    supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-  }, [])
+//   const router = useRouter();
+//   const segments = useSegments();
+//   const inAuthGroup = segments[0] === "auth";
 
-  useEffect(() => {
-    if (error) throw error;
-  }, [error]);
+//   useEffect(() => {
+//     if (error) throw error;
+//   }, [error]);
 
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+//   useEffect(() => {
+//     if (loaded) {
+//       SplashScreen.hideAsync();
+//     }
+//   }, [loaded]);
 
-  const segment = segments[0] ==='auth';
+//   useEffect(() => {
+//     if (!loaded || !isLoaded) return;
 
-  useEffect(() => {
-    if (!loaded || !isLoaded) return;
+//     if (!isSignedIn && !inAuthGroup) {
+//       router.replace("/");
+//     } else if (isSignedIn && inAuthGroup) {
+//       router.replace("/");
+//     }
+//   }, [ loaded, isLoaded, isSignedIn, inAuthGroup, router ]);
 
-    if (!isSignedIn && !inAuthGroup) {
-      router.replace('/login');
-    } else if (isSignedIn && inAuthGroup) {
-      router.replace('/');
-    }
-  }, [isLoaded, isSignedIn, loaded]);
+//   if (!loaded || !isLoaded) return null;
 
-  if (!loaded || !isLoaded) return null;  
-
-  return (
-    <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen
+//   return (
+//       <GestureHandlerRootView style={{ flex: 1 }}>
+//     <Stack>
+//       <Stack.Screen name="index" options={{ headerShown: false }} />
+{
+  /* <Stack.Screen
         name="login"
         options={{
-          presentation: "modal",
-          headerTitle : () => <Text>Custom App</Text>,
+          presentation: "modal",r
+          headerTitle: () => <Text>Custom App</Text>,
           headerTitleStyle: {
             fontFamily: "mon-sb",
           },
@@ -74,19 +63,35 @@ const InitialLayout = () => {
             </TouchableOpacity>
           ),
         }}
-      />
-    </Stack>
-  );
-};
+//       /> */
+}
+//     </Stack>
+//     </GestureHandlerRootView>
+
+//   );
+// };
 
 const RootLayoutNav = () => {
+  
+SplashScreen.preventAutoHideAsync();
+const router = useRouter();
 
   return (
-    <AuthProvider> 
-      <GestureHandlerRootView style={{ flex: 1 }}>
-        <InitialLayout />
-      </GestureHandlerRootView>
-    </AuthProvider>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="main" options={{
+          presentation: "modal",
+          headerTitle: () => <Text>Main UI</Text>,
+          headerTitleStyle: {
+            fontFamily: "mon-sb",
+          },
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+              <Ionicons name="close-outline" size={28} />
+            </TouchableOpacity>
+          ),
+        }} />
+      </Stack>
   );
 };
 

@@ -1,8 +1,8 @@
-import {  View} from "react-native";
+import {  View } from "react-native";
 import AnimatedIntro from "@/components/AnimatedIntro";
-import LoginSheet from "@/components/LoginSheet";
+import EnterButton from "@/components/EnterButton";
 
-export default function Index() {
+export default function index() {
   return (
     <View 
       style={{
@@ -10,8 +10,7 @@ export default function Index() {
         justifyContent: "center",
         }}>    
       <AnimatedIntro/>
-      <LoginSheet/>
-
+      <EnterButton />
     </View>
   );
 }
