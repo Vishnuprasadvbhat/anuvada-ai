@@ -1,6 +1,5 @@
-import { Ionicons } from "@expo/vector-icons";
-import { SplashScreen, Stack, useRouter} from "expo-router";
-import { TouchableOpacity, Text } from "react-native";
+import { SplashScreen, Stack} from "expo-router";
+// import { TouchableOpacity, Text } from "react-native";
 import React from "react";
 
 // import { useFonts } from "@expo-google-fonts/raleway";
@@ -74,23 +73,11 @@ import React from "react";
 const RootLayoutNav = () => {
   
 SplashScreen.preventAutoHideAsync();
-const router = useRouter();
 
   return (
       <Stack>
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="main" options={{
-          presentation: "modal",
-          headerTitle: () => <Text>Main UI</Text>,
-          headerTitleStyle: {
-            fontFamily: "mon-sb",
-          },
-          headerLeft: () => (
-            <TouchableOpacity onPress={() => router.back()}>
-              <Ionicons name="close-outline" size={28} />
-            </TouchableOpacity>
-          ),
-        }} />
+        <Stack.Screen name="main" options={{ headerShown: false }} />
       </Stack>
   );
 };

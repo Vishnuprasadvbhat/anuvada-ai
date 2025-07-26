@@ -18,16 +18,7 @@ const Main = () => {
       style={styles.container}
     >
     <View>
-      <Text>Main</Text>
-      <DrawerUI />
-      <TextInput
-          autoCapitalize="none"
-          placeholder="Email"
-          style={styles.inputfield}
-          value={emailAddress}
-          onChangeText={setEmailAddress}
-        ></TextInput>
-      <MainUI />
+      
     </View>
     </KeyboardAvoidingView>
   )
