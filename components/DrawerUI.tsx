@@ -1,17 +1,27 @@
-import { View, Text , TextInput} from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
+import { Drawer } from 'expo-router/drawer';
+
+
 
 const DrawerUI = () => {
   return (
-    <View>
-      <Text>DrawerUI</Text>
-      <TextInput
-                autoCapitalize="none"
-                placeholder="Email" 
-                style={{ marginVertical: 4, height: 50, borderWidth: 1, borderColor: "#000", borderRadius: 8, padding: 10, backgroundColor: "#fff" }}
-                
-              ></TextInput>
-    </View>
+      <Drawer>
+        <Drawer.Screen
+          name="index"
+          options={{
+            title: "Home",
+            headerShown: false,
+          }}
+        />
+        <Drawer.Screen
+          name="main"
+          options={{
+            title: "Main",
+            headerShown: false,
+          }}
+        />
+      </Drawer>
   )
 }
 
