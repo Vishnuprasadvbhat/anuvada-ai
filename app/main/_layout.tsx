@@ -1,12 +1,15 @@
 import { TouchableOpacity, View, Text, Image, StyleSheet } from "react-native";
 import React from "react";
 import { Drawer } from "expo-router/drawer";
-import { Link } from "expo-router";
-import {Ionicons} from '@expo/vector-icons';
+import { Link, useNavigation } from "expo-router";
+import {FontAwesome6, Ionicons} from '@expo/vector-icons';
 import Colors from "@/constants/Colors";
+import { DrawerActions } from "@react-navigation/native";
+import { navigate } from "expo-router/build/global-state/routing";
 
 
 const Layout = () => {
+  const navigation = useNavigation();
   return (
     <Drawer>
       <Drawer.Screen
@@ -22,6 +25,9 @@ const Layout = () => {
               ></Image>
             </View>
           ),
+          headerStyle : {
+            backgroundColor: Colors.light
+          },
           headerTitle: () => (
             <Text
               style={{
@@ -29,6 +35,7 @@ const Layout = () => {
                 fontSize: 20,
                 fontWeight: "bold",
                 justifyContent: "center",
+                marginLeft: 0,
               }}
             >
               Anuvada AI
