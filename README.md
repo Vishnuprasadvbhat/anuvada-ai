@@ -9,3 +9,6 @@
 | `chat/history.tsx`      | A history view for previous text chats                 |
 | `voiceChat/index.tsx`   | Voice conversation interface (STT/TTS)                 |
 | `voiceChat/history.tsx` | View of previous voice conversations                   |
+
+
+Expo SDK Version: 53.0.20
