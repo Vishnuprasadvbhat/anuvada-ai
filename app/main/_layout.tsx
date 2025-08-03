@@ -203,9 +203,9 @@ const Styles = StyleSheet.create({
     gap : 12,
   },
   avatar: {
-    width : 50,
+    width : 40,
     borderRadius: 12,
-    height : 50,
+    height : 40,
     backgroundColor: Colors.dark
     
   },
