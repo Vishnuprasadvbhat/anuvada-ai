@@ -8,13 +8,29 @@ const NewChat = () => {
   return (
     <View style={defaultStyles.pageContainer}>
       <Stack.Screen options={{
-        headerTitle: () => (
-          <DropDown/>
-        )
+        statusBarStyle: 'dark',
+        headerTitle: 'Text Translation ',
+        headerStyle : {
+         backgroundColor: '#e5e3e3ff'         
+        },
+        headerTitleStyle : {
+          fontSize: 20,
+          fontWeight: '800',
+          color: '#000'          
+        },
+        // headerTitle: () => (
+        //   <DropDown title='Test'
+        //   items={[
+        //     {key: '01', title:'Translate from: ',icon: 'new'},
+        //     {key: '02', title:'Translate to: ',icon: 'open'}
+        //   ]}/>
+        // )
       }} />
             <Text>NewChat</Text>
             <Text>NewChat</Text>
+            
     </View>
+    
   )
 }
 

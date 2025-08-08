@@ -17,6 +17,9 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
+
+
+
 export const CustomDrawerContent = (props: any) => {
   const { bottom, top } = useSafeAreaInsets();
 
@@ -78,7 +81,7 @@ const Layout = () => {
         name="index"
         getId={() => Math.random().toString()}
         options={{
-          title: "New Chat",
+          title: "Anuvada AI",
           drawerIcon: () => (
             <View style={[Styles.item, { backgroundColor: "#000" }]}>
               <Image
@@ -96,6 +99,7 @@ const Layout = () => {
                 justifyContent: "center",
                 marginLeft: 0,
               }}
+              
             >
               Anuvada AI
             </Text>
@@ -141,7 +145,7 @@ const Layout = () => {
           headerRight: () => (
             <Link
               href={{
-                pathname: "/main/learn/new",
+                pathname: "/main/learn",
               }}
               push
               asChild
@@ -158,7 +162,105 @@ const Layout = () => {
           ),
         }}
       />
+
+      <Drawer.Screen
+        name="chat/newchat"
+        getId={() => Math.random().toString()}
+        options={{
+          title: "New Chat",
+          drawerIcon: () => (
+            <View style={[Styles.item, { backgroundColor: "#fff" }]}>
+              <Image
+                source={require("@/assets/images/chat.png")}
+                style={Styles.btnImage}
+              ></Image>
+            </View>
+          ),
+          headerTitle: () => (
+            <Text
+              style={{
+                fontFamily: "SpaceMono",
+                fontSize: 20,
+                fontWeight: "bold",
+                justifyContent: "center",
+                marginLeft: 0,
+              }}
+              
+            >
+             New Chat
+            </Text>
+          ),
+          headerRight: () => (
+            <Link
+              href={{
+                pathname: "/main/chat/newchat",
+              }}
+              push
+              asChild
+            >
+              <TouchableOpacity>
+                <Ionicons
+                  name="create-outline"
+                  size={24}
+                  color={Colors.grey} // Icon for new chat
+                  style={{ marginRight: 16 }}
+                />
+              </TouchableOpacity>
+            </Link>
+          ),
+        }}
+      />
+
+<Drawer.Screen
+        name="voicechat/newvoicechat"
+        getId={() => Math.random().toString()}
+        options={{
+          title: "New Voice Chat",
+          drawerIcon: () => (
+            <View style={[Styles.item, { backgroundColor: "#fff" }]}>
+              <Image
+                source={require("@/assets/images/microphone.png")}
+                style={Styles.btnImage}
+              ></Image>
+            </View>
+          ),
+          headerTitle: () => (
+            <Text
+              style={{
+                fontFamily: "SpaceMono",
+                fontSize: 20,
+                fontWeight: "bold",
+                justifyContent: "center",
+                marginLeft: 0,
+              }}
+              
+            >
+              Voice Chat
+            </Text>
+          ),
+          headerRight: () => (
+            <Link
+              href={{
+                pathname: "/main/voicechat/newvoice",
+              }}
+              push
+              asChild
+            >
+              <TouchableOpacity>
+                <Ionicons
+                  name="create-outline"
+                  size={24}
+                  color={Colors.grey} // Icon for new chat
+                  style={{ marginRight: 16 }}
+                />
+              </TouchableOpacity>
+            </Link>
+          ),
+        }}
+      />
     </Drawer>
+
+    
   );
 };
 

@@ -1,10 +1,11 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-
+import IntroScreen from '@/components/AboutApp'
 const index = () => {
   return (
     <View>
-      <Text></Text>
+      <Text>About the App </Text>
+      <IntroScreen />
     </View>
   )
 }
