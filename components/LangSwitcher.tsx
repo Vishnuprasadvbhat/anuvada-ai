@@ -20,7 +20,7 @@ export default function LanguageSwitcher({ sourceLang, targetLang, onSwitch }: L
         {/* Switch Icon */}
         <TouchableOpacity onPress={() => onSwitch(sourceLang, targetLang)} style={styles.switchButton}>
           <Image
-            source={require("@/assets/images/anu-logo.png")}
+            source={require("@/assets/images/chat.png")}
             style={styles.switchIcon}
           />
         </TouchableOpacity>
@@ -36,39 +36,48 @@ export default function LanguageSwitcher({ sourceLang, targetLang, onSwitch }: L
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingHorizontal: 16,
-    paddingTop: 8,
-    paddingBottom: 4,
-    backgroundColor: colors.grey,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.dark,
+    paddingHorizontal: 0,
+    paddingTop: 6,
+    paddingBottom: 2,
+    backgroundColor: colors.light,
+    
   },
   container: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: colors.grey,
-    borderRadius: 12,
-    padding: 12,
+    backgroundColor: '#c5c4c4ff',
+    borderRadius: 0,
+    padding: 10,
+
   },
   langBox: {
     flex: 1,
     padding: 10,
-    backgroundColor: colors.dark,
+    backgroundColor: colors.light,
     borderRadius: 8,
     alignItems: 'center',
+    borderColor: colors.dark,
+    borderWidth : 1,
   },
   langText: {
-    color: colors.light,
+    color: colors.dark,
     fontSize: 16,
     fontWeight: '600',
   },
   switchButton: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
+    borderColor: colors.dark,
+    borderWidth: 1,
+    backgroundColor: '#fff',
+    margin: 8,
+    paddingTop: 2,
+    paddingBottom: 2,
+    borderRadius: 10
   },
+
   switchIcon: {
     width: 24,
     height: 24,
-    tintColor: colors.primary,
   },
 });
