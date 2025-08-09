@@ -12,3 +12,5 @@
 
 
 Expo SDK Version: 53.0.20
+
+https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/your-first-animation/

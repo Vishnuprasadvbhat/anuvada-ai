@@ -1,12 +1,19 @@
 import { View, Text } from 'react-native'
 import React from 'react'
-import IntroScreen from '@/components/AboutApp'
+import Intro from '@/components/AboutApp'
+import 'react-native-reanimated';
+
 const index = () => {
   return (
-    <View>
-      <Text>About the App </Text>
-      <IntroScreen />
+
+    <View style={{
+        flex: 1,
+        justifyContent: "center",
+        }} >
+      
+      <Intro />
     </View>
+
   )
 }
 

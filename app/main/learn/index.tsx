@@ -5,6 +5,7 @@ const Index = () => {
   return (
     <View>
       <Text>Index</Text>
+      
     </View>
   )
 }

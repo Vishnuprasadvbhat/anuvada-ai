@@ -164,7 +164,7 @@ const Layout = () => {
       />
 
       <Drawer.Screen
-        name="chat/newchat"
+        name="chat"
         getId={() => Math.random().toString()}
         options={{
           title: "New Chat",
@@ -212,7 +212,7 @@ const Layout = () => {
       />
 
 <Drawer.Screen
-        name="voicechat/newvoicechat"
+        name="voicechat/newvoice"
         getId={() => Math.random().toString()}
         options={{
           title: "New Voice Chat",
