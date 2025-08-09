@@ -3,18 +3,15 @@ import LanguageSwitcher from "@/components/LangSwitcher";
 import { getModelLanguage } from "@/utils/langMap";
 
 export default function index() {
+
+
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-      }}
-    >
-      <LanguageSwitcher
+    <View>
+    <LanguageSwitcher
         // translateWithAI(inputText, modelSource, modelTarget);
 
-        sourceLang="en"
-        targetLang="hi"
+        sourceLang="English"
+        targetLang="Japanese"
         onSwitch={(src: string, tgt: string) => {
           const modelSource = getModelLanguage(src);
           const modelTarget = getModelLanguage(tgt);
@@ -24,7 +21,6 @@ export default function index() {
           //  pass these to your AI model
         }}
       />
-      <Text>Translate with ease</Text>
     </View>
   );
 }

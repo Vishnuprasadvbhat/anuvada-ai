@@ -107,7 +107,7 @@ const Layout = () => {
           headerRight: () => (
             <Link
               href={{
-                pathname: "/main/chat/newchat",
+                pathname: "/main/chat/",
               }}
               push
               asChild
@@ -193,7 +193,7 @@ const Layout = () => {
           headerRight: () => (
             <Link
               href={{
-                pathname: "/main/chat/newchat",
+                pathname: "/main/chat/",
               }}
               push
               asChild
