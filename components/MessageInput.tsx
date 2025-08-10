@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 
-export type MessageInputProps = {
-}
+// export type MessageInputProps = {
+// }
 
 
 export default function MessageInput() {
