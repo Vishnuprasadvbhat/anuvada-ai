@@ -90,6 +90,9 @@ const Layout = () => {
               ></Image>
             </View>
           ),
+          headerStyle : {
+            backgroundColor: '#efeaeaff'
+          },
           headerTitle: () => (
             <Text
               style={{
@@ -107,7 +110,7 @@ const Layout = () => {
           headerRight: () => (
             <Link
               href={{
-                pathname: "/main/chat/",
+                pathname: "/main/chat",
               }}
               push
               asChild
@@ -193,7 +196,7 @@ const Layout = () => {
           headerRight: () => (
             <Link
               href={{
-                pathname: "/main/chat/",
+                pathname: "/main/chat",
               }}
               push
               asChild

@@ -1,15 +1,15 @@
 import { View, Text } from "react-native";
 import LanguageSwitcher from "@/components/LangSwitcher";
 import { getModelLanguage } from "@/utils/langMap";
+import Picker from "@/components/Picker";
 
 export default function index() {
 
 
   return (
     <View>
-    <LanguageSwitcher
+    {/* <LanguageSwitcher
         // translateWithAI(inputText, modelSource, modelTarget);
-
         sourceLang="English"
         targetLang="Japanese"
         onSwitch={(src: string, tgt: string) => {
@@ -20,7 +20,8 @@ export default function index() {
 
           //  pass these to your AI model
         }}
-      />
+      /> */}
+    <Picker />
     </View>
   );
 }
