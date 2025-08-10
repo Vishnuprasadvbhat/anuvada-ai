@@ -8,6 +8,7 @@ type LanguageSwitcherProps = {
   onSwitch: (src: string, tgt: string) => void;
 };
 
+
 export default function LanguageSwitcher({ sourceLang, targetLang, onSwitch }: LanguageSwitcherProps) {
   return (
     <View style={styles.wrapper}>
@@ -37,8 +38,8 @@ export default function LanguageSwitcher({ sourceLang, targetLang, onSwitch }: L
 const styles = StyleSheet.create({
   wrapper: {
     paddingHorizontal: 0,
-    paddingTop: 6,
-    paddingBottom: 2,
+    paddingTop: 0,
+    paddingBottom: 0,
     backgroundColor: colors.light,
     
   },
@@ -46,24 +47,25 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    backgroundColor: '#c5c4c4ff',
+    backgroundColor: '#000000ff',
     borderRadius: 0,
-    padding: 10,
+    padding: 8,
 
   },
   langBox: {
     flex: 1,
     padding: 10,
     backgroundColor: colors.light,
-    borderRadius: 8,
+    borderRadius: 12,
     alignItems: 'center',
     borderColor: colors.dark,
     borderWidth : 1,
+    
   },
   langText: {
     color: colors.dark,
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '800',
   },
   switchButton: {
     paddingHorizontal: 12,
