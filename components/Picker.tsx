@@ -101,6 +101,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     gap: 6, // Optional: adds consistent spacing
     padding: 12,
+    backgroundColor : "#e1e1d7ff"
    
   },
   dropdownWrapper: {
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
   },
   
   langText : {
-    fontWeight: '400',
+    fontWeight: '600',
     fontSize: 16,
     
   },
