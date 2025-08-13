@@ -1,5 +1,5 @@
-import React, { useRef, useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Image, Text } from "react-native";
+import React, {  useState } from "react";
+import { View, StyleSheet, TouchableOpacity, Image, } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import colors from "@/constants/Colors";
 
@@ -99,14 +99,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    gap: 6, // Optional: adds consistent spacing
+    gap: 6, 
     padding: 12,
     backgroundColor : "#e1e1d7ff"
    
   },
   dropdownWrapper: {
     flex: 1,
-    zIndex: 1000, // Ensure dropdowns stack properly
+    zIndex: 1000, 
   },
   langBox: {
     backgroundColor: colors.light,
