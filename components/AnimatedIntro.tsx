@@ -29,6 +29,8 @@ const content = [
   },
 ];
 
+
+
 const AnimatedIntro = () =>  {
 
 

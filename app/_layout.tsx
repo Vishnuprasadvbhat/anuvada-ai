@@ -4,7 +4,7 @@ import React from "react";
 
 // import { useFonts } from "@expo-google-fonts/raleway";
 // import { useEffect } from "react";
-// import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 // import { useAuth } from "@/context/AuthContext";
 
 // import { SafeAreaProvider } from "react-native-safe-area-context";
@@ -69,8 +69,7 @@ import React from "react";
 
 //   );
 // };
-
-const RootLayoutNav = () => {
+const InitialLayout = () => {
   
 SplashScreen.preventAutoHideAsync();
 
@@ -80,6 +79,16 @@ SplashScreen.preventAutoHideAsync();
         <Stack.Screen name="main" options={{ headerShown: false }} />
         
       </Stack>
+  );
+};
+
+
+const RootLayoutNav = () => {
+  return (
+  
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <InitialLayout />
+      </GestureHandlerRootView>
   );
 };
 

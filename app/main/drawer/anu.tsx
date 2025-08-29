@@ -1,6 +1,6 @@
 import { View } from 'react-native'
 import React from 'react'
-import Intro from '@/components/AboutApp'
+import IntroScreen from '@/components/AboutApp'
 import 'react-native-reanimated';
 
 const index = () => {
@@ -11,7 +11,7 @@ const index = () => {
         justifyContent: "center",
         }} >
       
-      <Intro />
+      <IntroScreen />
     </View>
 
   )

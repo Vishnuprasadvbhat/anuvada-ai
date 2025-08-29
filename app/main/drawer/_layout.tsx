@@ -24,8 +24,8 @@ export const CustomDrawerContent = (props: any) => {
   const { bottom, top } = useSafeAreaInsets();
 
   return (
-    <View style={{ flex: 1, marginTop: top }}>
-      <View style={{ backgroundColor: "#fff", paddingBottom: 16 }}>
+    <View style={{ flex: 1, marginTop: 5 }}>
+      <View style={{ backgroundColor: "#fff", paddingBottom: 16, }}>
         <View style={Styles.searchSection}>
           <Ionicons
             style={Styles.searchIcon}
@@ -48,14 +48,14 @@ export const CustomDrawerContent = (props: any) => {
       </DrawerContentScrollView>
 
       <View style={{ padding: 16, paddingBottom: bottom }}>
-        <Link href = "/main/modal/settings">
+        
         <TouchableOpacity style = {Styles.footer}>
           <Image
                 source={require("@/assets/images/anu-logo.png")}
                 style={Styles.avatar}
               ></Image>
           <Text style= {Styles.userName}>Vishnuprasad V Bhat</Text>
-          </TouchableOpacity></Link> 
+          </TouchableOpacity>
       </View>
     </View>
   );
@@ -95,7 +95,7 @@ const Layout = () => {
             </View>
           ),
           headerStyle : {
-            backgroundColor: '#efeaeaff'
+            backgroundColor: '#ffffffff'
           },
           headerTitle: () => (
             <Text
@@ -162,6 +162,40 @@ const Layout = () => {
                   name="create-outline"
                   size={24}
                   color={Colors.grey}
+                  style={{ marginRight: 16 }}
+                />
+              </TouchableOpacity>
+            </Link>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="chat/newchat"
+        getId={() => Math.random().toString()}
+        options={{
+          title: 'Try Chat',
+          drawerIcon: () => (
+            <View style={[Styles.item, { backgroundColor: "#fff" }]}>
+              <Image
+                source={require("@/assets/images/chat.png")}
+                style={Styles.btnImage}
+              ></Image>
+            </View>
+          ),
+        
+          headerRight: () => (
+            <Link
+              href={{
+                pathname: "/main/drawer/chat/newchat",
+              }}
+              push
+              asChild
+            >
+              <TouchableOpacity>
+                <Ionicons
+                  name="create-outline"
+                  size={24}
+                  color={Colors.grey} // Icon for new chat
                   style={{ marginRight: 16 }}
                 />
               </TouchableOpacity>
