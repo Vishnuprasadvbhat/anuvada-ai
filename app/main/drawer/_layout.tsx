@@ -10,18 +10,18 @@ import {
 import React from "react";
 import { Drawer } from "expo-router/drawer";
 import { Link, useNavigation} from "expo-router";
-import { Ionicons,FontAwesome6  } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import {
   DrawerContentScrollView,
   DrawerItemList,
 } from "@react-navigation/drawer";
-import { DrawerActions } from '@react-navigation/native';
+// import { DrawerActions } from '@react-navigation/native';
 
 
 export const CustomDrawerContent = (props: any) => {
-  const { bottom, top } = useSafeAreaInsets();
+  const { bottom,  } = useSafeAreaInsets();
 
   return (
     <View style={{ flex: 1, marginTop: 5 }}>
@@ -63,7 +63,7 @@ export const CustomDrawerContent = (props: any) => {
 
 const Layout = () => {
 
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   return (
     <Drawer
       drawerContent={CustomDrawerContent}
@@ -79,6 +79,7 @@ const Layout = () => {
         drawerItemStyle: { borderRadius: 12 }, // Rounded corners for drawer items
         overlayColor: "rgba(0, 0, 0, 0.70)", // Overlay -> darken the background once drawer is open
         drawerStyle: { width: useWindowDimensions().width * 0.875 },
+        // drawerHideStatusBarOnOpen : true,
       }}
     >
       <Drawer.Screen
@@ -201,6 +202,19 @@ const Layout = () => {
               </TouchableOpacity>
             </Link>
           ),
+          headerTitle: () => (
+            <Text 
+            style = {{
+              fontFamily: 'SpaceMono',
+              fontSize: 20,
+              fontWeight: "bold",
+              justifyContent: "center",
+              marginLeft: 0,
+
+            }}>
+              New Chat
+            </Text>
+          )
         }}
       />
 
