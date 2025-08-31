@@ -13,7 +13,7 @@ const EnterButton = () => {
     <View style={[styles.container, { paddingBottom: bottom }]}>
             
     <Link href={{
-      pathname : '/main/drawer'
+      pathname : '/main/drawer/anu'
     }} asChild style={[defaultStyles.btn, styles.btnLight]}>
       <TouchableOpacity style={[defaultStyles.btn, styles.btnLight]}>
         <Text style={[styles.btnLightText]}>Start Translating</Text>

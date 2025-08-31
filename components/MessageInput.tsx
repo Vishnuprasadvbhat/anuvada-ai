@@ -1,17 +1,16 @@
 import { View, Text } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-// export type MessageInputProps = {
-// }
+
 
 
 
 export default function MessageInput() {
 
-  const { bottom } = useSafeAreaInsets();
+  // const  bottom  = useSafeAreaInsets().bottom;
 
   return (
-    <View style={{ paddingBottom: bottom}}>
+    <View>
       <Text>MessageInput</Text>
     </View>
   )
